@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfigurations {
 
-   /*@Bean
+  /*@Bean
    public DocenteManagementCUAdapter crearDocenteManagementCUInt(
            DocenteManagementGatewayIntPort objDocenteManagementGateway,
            DocenteFormatterResponseIntPort objDocenteFormatterResponse) {
@@ -17,12 +17,15 @@ public class BeanConfigurations {
       return objDocenteManagementCU;
    }*/
 
-   // TO DO crear los beans respuestas
-   @Bean
-   public CuestionarioManagementCUAdapter crearCuestionarioManagementCUInt(
-           CuestionarioManagementGatewayIntPort objCuestionarioManagementGateway,
-           CuestionarioFormatterResponseIntPort objCuestionarioFormatterResponse) {
-      return new CuestionarioManagementCUAdapter(objCuestionarioManagementGateway, objCuestionarioFormatterResponse);
-   }
-
+  // TO DO crear los beans respuestas
+  @Bean
+  public CuestionarioManagementCUAdapter crearCuestionarioManagementCUInt(
+    CuestionarioManagementGatewayIntPort objCuestionarioManagementGateway,
+    CuestionarioFormatterResponseIntPort objCuestionarioFormatterResponse
+  ) {
+    return new CuestionarioManagementCUAdapter(
+      objCuestionarioManagementGateway,
+      objCuestionarioFormatterResponse
+    );
+  }
 }
