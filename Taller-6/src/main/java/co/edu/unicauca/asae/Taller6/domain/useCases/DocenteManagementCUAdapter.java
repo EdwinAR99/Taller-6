@@ -26,12 +26,22 @@ public class DocenteManagementCUAdapter implements DocenteManagementCUIntPort {
           objDocente.getNumeroIdentificacion()
         )
     ) {
-      this.objDocenteFormatterResponseIntPort.returnResponseErrorExist(
+      this.objDocenteFormatterResponseIntPort.returnResponseErrorExistID(
           "Error, se encuentra en el sistema un docente registrado con ese numero de identificacion"
         );
     } else {
-      objDocenteCreated =
-        this.objDocenteManagementGatewayIntPort.saveDocente(objDocente);
+      if (
+        this.objDocenteManagementGatewayIntPort.existDocenteForEmail(
+            objDocente.getCorreo()
+          )
+      ) {
+        this.objDocenteFormatterResponseIntPort.returnResponseErrorExistEmail(
+            "Error, se encuentra en el sistema un docente registrado con ese correo"
+          );
+      } else {
+        objDocenteCreated =
+          this.objDocenteManagementGatewayIntPort.saveDocente(objDocente);
+      }
     }
     return objDocenteCreated;
   }

@@ -25,7 +25,10 @@ public class DocenteManagementGatewayImplAdapter
 
   @Override
   public boolean existDocenteForNumberId(String numeroIdentificacion) {
-    return false;
+    return (
+      this.objDocenteRepository.existDocenteForNumberId(numeroIdentificacion) ==
+      1
+    );
   }
 
   @Override
@@ -46,5 +49,10 @@ public class DocenteManagementGatewayImplAdapter
     Docente objDocenteEntityResponse =
       this.docenteModelMapper.map(objDocenteEntityR, Docente.class);
     return objDocenteEntityResponse;
+  }
+
+  @Override
+  public boolean existDocenteForEmail(String correo) {
+    return this.objDocenteRepository.existDocenteForEmail(correo) == 1;
   }
 }
