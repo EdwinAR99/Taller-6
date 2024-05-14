@@ -6,11 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PersonaDTORequest {
-
-  private int idPersona;
-  private String tipoIdentificacion;
-  private String numeroIdentificacion;
-  private String nombres;
-  private String apellidos;
+public class TelefonoDTORequest {
+    private int idTelefono;
+    private String tipoTelefono;
+    private String numero;
+    private DocenteDTORequest objDocente;
 }

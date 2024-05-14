@@ -1,4 +1,4 @@
-package co.edu.unicauca.asae.Taller6.infrastructure.input.docenteManagementController.DTORequest;
+package co.edu.unicauca.asae.Taller6.infrastructure.input.docenteManagementController.DTOResponse;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -8,9 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class DepartamentoDTORequest {
+public class DepartamentoDTOResponse {
     private int idDepartamento;
     private String nombreDep;
     private String descripcion;
-    private List<DocenteDTORequest> listaDocentes;
+    private List<DocenteDTOResponse> listaDocentes;
 }

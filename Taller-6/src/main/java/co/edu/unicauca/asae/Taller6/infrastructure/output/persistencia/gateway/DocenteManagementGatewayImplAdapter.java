@@ -5,7 +5,10 @@ import co.edu.unicauca.asae.Taller6.domain.models.Docente;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.DocenteEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.repositories.IDocenteRepository;
 import java.util.Optional;
+
+
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +19,9 @@ public class DocenteManagementGatewayImplAdapter
   private final ModelMapper docenteModelMapper;
 
   public DocenteManagementGatewayImplAdapter(
-    IDocenteRepository objDocenteRepository,
-    ModelMapper docenteModelMapper
+    @Qualifier("createDocenteMapper") ModelMapper docenteModelMapper,
+    IDocenteRepository objDocenteRepository
+   
   ) {
     this.objDocenteRepository = objDocenteRepository;
     this.docenteModelMapper = docenteModelMapper;
