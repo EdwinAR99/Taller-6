@@ -26,10 +26,11 @@ public class BeanConfigurations {
     );
     return objDocenteManagementCU;
   }
+  /* 
   @Bean
   public DocenteMapperInfrastructureDomain crearDocenteMapperInfrastructureDomain() {
       return Mappers.getMapper(DocenteMapperInfrastructureDomain.class);
-  }
+  }*/
   // TO DO crear los beans respuestas
   @Bean
   public CuestionarioManagementCUAdapter crearCuestionarioManagementCUInt(

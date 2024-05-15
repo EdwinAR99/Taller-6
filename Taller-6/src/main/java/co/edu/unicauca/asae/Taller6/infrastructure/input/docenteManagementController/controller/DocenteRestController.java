@@ -27,6 +27,7 @@ public class DocenteRestController {
   public ResponseEntity<DocenteDTOResponse> getDocente(
     @PathVariable Integer id
   ) {
+    System.out.println(id);
     ResponseEntity<DocenteDTOResponse> objRespuesta = new ResponseEntity<DocenteDTOResponse>(
       objMapper.mapperOfResponseToDocente(
         this.objManageDocenteCUInt.getDocente(id)

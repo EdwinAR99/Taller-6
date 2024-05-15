@@ -13,12 +13,12 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface DocenteMapperInfrastructureDomain {
 
-
+  
   RespuestaDTOResponse map(Respuesta respuesta);
 
   List<RespuestaDTOResponse> mapList(List<Respuesta> respuestas);
   
-  Docente mapperOfRequestToDocente(DocenteDTORequest request);
+  Docente mapperOfRequestToDocente(DocenteDTORequest docente);
 
   DocenteDTOResponse mapperOfResponseToDocente(Docente objDocente);
 
