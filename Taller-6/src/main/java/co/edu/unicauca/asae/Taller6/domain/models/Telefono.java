@@ -1,10 +1,8 @@
 package co.edu.unicauca.asae.Taller6.domain.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor @Getter @Setter
 public class Telefono {
 
    private int idTelefono;

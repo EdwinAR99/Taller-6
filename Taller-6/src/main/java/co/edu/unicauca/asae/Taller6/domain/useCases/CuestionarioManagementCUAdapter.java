@@ -21,11 +21,24 @@ public class CuestionarioManagementCUAdapter implements CuestionarioManagementCU
 
    @Override
    public Cuestionario crear(Cuestionario objCuestionario) {
-      return null;
+      System.out.println("Añadiendo un nuevo cuestionario");
+      Cuestionario objCuestionarioCreate = null;
+      if (this.objCuestionarioManagementGateway.existeCuestionarioPorTitulo(objCuestionario.getTitulo())){
+         this.objCuestionarioFormatterResponse.retornarRespuestaErrorReglaDeNegocio("Error, ya existe un cuestionario con este titulo");
+      } else {
+         objCuestionarioCreate = objCuestionarioManagementGateway.guardar(objCuestionario);
+      }
+
+      return objCuestionarioCreate;
    }
 
    @Override
    public List<Cuestionario> listar() {
-      return List.of();
+      return objCuestionarioManagementGateway.listar();
+   }
+
+   @Override
+   public List<Cuestionario> listarPorTitulo(String titulo) {
+      return objCuestionarioManagementGateway.listarPorTitulo(titulo);
    }
 }
