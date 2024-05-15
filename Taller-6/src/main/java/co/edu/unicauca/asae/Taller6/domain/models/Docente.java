@@ -1,13 +1,11 @@
 package co.edu.unicauca.asae.Taller6.domain.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Data @AllArgsConstructor @NoArgsConstructor @Getter @Setter
 public class Docente extends Persona{
 
    private String correo;
@@ -16,7 +14,7 @@ public class Docente extends Persona{
    private List<Departamento> listaDepartamentos;
    private List<Respuesta> listaRespuestas;
 
-   public Docente() {
+   /*public Docente() {
       this.listaDepartamentos = new ArrayList<Departamento>();
       this.listaRespuestas = new ArrayList<Respuesta>();
    }
@@ -32,7 +30,7 @@ public class Docente extends Persona{
       this.vinculacion = vinculacion;
       this.listaDepartamentos = new ArrayList<Departamento>();
       this.listaRespuestas = new ArrayList<Respuesta>();
-   }
+   }*/
 
    public void addDepartamento(Departamento departamento) {this.listaDepartamentos.add(departamento);}
 

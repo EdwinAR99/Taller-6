@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface CuestionarioManagementGatewayIntPort {
 
-   boolean existeCuestionarioPorId(int id);
+   boolean existeCuestionarioPorTitulo(String titulo);
 
    Cuestionario guardar(Cuestionario objCuestionario);
 
    List<Cuestionario> listar();
+
+   List<Cuestionario> listarPorTitulo(String patron);
 }
