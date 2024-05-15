@@ -9,7 +9,7 @@ import co.edu.unicauca.asae.Taller6.domain.models.Docente;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.DocenteEntity;
 
 @Configuration
-public class DocenteMapper {
+public class Mapper {
 
   @Bean
   public ModelMapper createDocenteMapper() {
@@ -18,4 +18,10 @@ public class DocenteMapper {
         docenteMap.addMapping(DocenteEntity::getObjTelefonoEntity,Docente::setObjTelefono).implicitMappings();
         return objMapper;
   }
+   /* 
+  @Bean
+  public ModelMapper crearCuestionarioMapper() {
+     return new ModelMapper();
+  }
+  */
 }

@@ -19,7 +19,7 @@ public class DocenteManagementGatewayImplAdapter
   private final ModelMapper docenteModelMapper;
 
   public DocenteManagementGatewayImplAdapter(
-  @Qualifier("createDocenteMapper") 
+  //@Qualifier("createDocenteMapper") 
    ModelMapper docenteModelMapper,
     IDocenteRepository objDocenteRepository
    
