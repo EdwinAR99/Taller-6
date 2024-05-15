@@ -10,6 +10,7 @@ import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.repositor
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class CuestionarioManagementGatewayImplAdapter implements CuestionarioMan
 
    public CuestionarioManagementGatewayImplAdapter(
            ICuestionarioRepository cuestionarioRepository,
-           ModelMapper cuestionarioMapper, ITipoPreguntaRepository tipoPreguntaRepository) {
+           @Qualifier("createCuestionarioMapper") ModelMapper cuestionarioMapper, ITipoPreguntaRepository tipoPreguntaRepository) {
       this.cuestionarioMapper = cuestionarioMapper;
       this.cuestionarioRepository = cuestionarioRepository;
       this.tipoPreguntaRepository = tipoPreguntaRepository;
