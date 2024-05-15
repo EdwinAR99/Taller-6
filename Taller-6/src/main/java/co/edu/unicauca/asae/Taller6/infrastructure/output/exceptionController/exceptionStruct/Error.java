@@ -1,9 +1,6 @@
 package co.edu.unicauca.asae.Taller6.infrastructure.output.exceptionController.exceptionStruct;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 @Data

@@ -9,4 +9,6 @@ public interface CuestionarioManagementCUIntPort {
    Cuestionario crear(Cuestionario objCuestionario);
 
    List<Cuestionario> listar();
+
+   List<Cuestionario> listarPorTitulo(String titulo);
 }
