@@ -19,10 +19,10 @@ public class RespuestaEntity {
 
     @ManyToOne
     @JoinColumn(name = "idPersona", nullable = false)
-    private PersonaEntity objPersonaEntity;
+    private PersonaEntity objPersona;
 
     @ManyToOne
     @JoinColumn(name = "idPregunta", nullable = false)
-    private PreguntaEntity objPreguntaEntity;
+    private PreguntaEntity objPregunta;
 
 }

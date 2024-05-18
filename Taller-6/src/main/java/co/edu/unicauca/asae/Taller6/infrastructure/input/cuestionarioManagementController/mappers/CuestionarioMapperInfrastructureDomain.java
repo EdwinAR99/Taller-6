@@ -5,6 +5,7 @@ import co.edu.unicauca.asae.Taller6.infrastructure.input.cuestionarioManagementC
 import co.edu.unicauca.asae.Taller6.infrastructure.input.cuestionarioManagementController.DTOResponse.CuestionarioDTOResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 
 import java.util.List;
 
@@ -12,7 +13,6 @@ import java.util.List;
 public interface CuestionarioMapperInfrastructureDomain {
 
    @Mapping(target = "idCuestionario", ignore = true)
-   @Mapping(target = "listaPreguntas", ignore = true)
    Cuestionario requestToCuestionario(CuestionarioDTORequest request);
 
    CuestionarioDTOResponse cuestionarioToResponse(Cuestionario objCuestionario);
