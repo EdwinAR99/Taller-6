@@ -3,13 +3,13 @@ package co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter @AllArgsConstructor
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class PreguntaEntity {
 
     @Id
@@ -21,21 +21,13 @@ public class PreguntaEntity {
 
     @ManyToOne
     @JoinColumn(name = "idTipoPregunta", nullable = false)
-    private TipoPreguntaEntity objTipoPreguntaEntity;
+    private TipoPreguntaEntity objTipoPregunta;
 
     @ManyToOne
     @JoinColumn(name = "idCuestionario", nullable = false)
-    private CuestionarioEntity objCuestionarioEntity;
+    private CuestionarioEntity objCuestionario;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "objPreguntaEntity")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.REMOVE}, mappedBy = "objPregunta")
     private List<RespuestaEntity> listaRespuestas;
-
-    public PreguntaEntity() {
-        this.listaRespuestas = new ArrayList<RespuestaEntity>();
-    }
-
-    public void addRespuesta(RespuestaEntity respuestaEntity){
-        this.listaRespuestas.add(respuestaEntity);
-    }
 
 }

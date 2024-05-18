@@ -19,6 +19,4 @@ public class PreguntaDTORequest {
     private TipoPreguntaDTORequest objTipoPregunta;
     
     private CuestionarioDTORequest objCuestionario;
-    @NotNull(message = "{pregunta.respuestas.null}")
-    private List<RespuestaDTORequest> listaRespuestas;
 }

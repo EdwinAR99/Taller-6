@@ -24,7 +24,7 @@ public class DocenteEntity extends PersonaEntity {
    @JoinTable(name = "departamentoDocentes", joinColumns = @JoinColumn(name = "idPersona"), inverseJoinColumns = @JoinColumn(name = "idDepartamento"))
    private List<DepartamentoEntity> listaDepartamentos;
 
-   @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, mappedBy = "objPersonaEntity")
+   @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, mappedBy = "objPersona")
    private List<RespuestaEntity> listaRespuestas;
 
    public DocenteEntity() {

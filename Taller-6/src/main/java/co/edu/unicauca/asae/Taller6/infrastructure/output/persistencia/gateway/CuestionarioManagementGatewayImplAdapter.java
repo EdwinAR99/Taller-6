@@ -2,6 +2,7 @@ package co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.gateway;
 
 import co.edu.unicauca.asae.Taller6.application.output.managementGateway.CuestionarioManagementGatewayIntPort;
 import co.edu.unicauca.asae.Taller6.domain.models.Cuestionario;
+import co.edu.unicauca.asae.Taller6.domain.models.Pregunta;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.CuestionarioEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.PreguntaEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.TipoPreguntaEntity;
@@ -26,7 +27,8 @@ public class CuestionarioManagementGatewayImplAdapter implements CuestionarioMan
 
    public CuestionarioManagementGatewayImplAdapter(
            ICuestionarioRepository cuestionarioRepository,
-           @Qualifier("createCuestionarioMapper") ModelMapper cuestionarioMapper, ITipoPreguntaRepository tipoPreguntaRepository) {
+           @Qualifier("createCuestionarioMapper") ModelMapper cuestionarioMapper, 
+           ITipoPreguntaRepository tipoPreguntaRepository) {
       this.cuestionarioMapper = cuestionarioMapper;
       this.cuestionarioRepository = cuestionarioRepository;
       this.tipoPreguntaRepository = tipoPreguntaRepository;
@@ -40,6 +42,11 @@ public class CuestionarioManagementGatewayImplAdapter implements CuestionarioMan
    @Override
    public Cuestionario guardar(Cuestionario objCuestionario) {
       CuestionarioEntity objCuestionarioEntity = this.cuestionarioMapper.map(objCuestionario, CuestionarioEntity.class);
+      for (int i = 0; i < objCuestionarioEntity.getListaPreguntas().size();i++){
+         objCuestionarioEntity.getListaPreguntas().get(i).setObjCuestionario(objCuestionarioEntity);
+         Optional<TipoPreguntaEntity> tipoPregunta = this.tipoPreguntaRepository.findById(objCuestionario.getListaPreguntas().get(i).getObjTipoPregunta().getIdTipoPregunta());
+         objCuestionarioEntity.getListaPreguntas().get(i).setObjTipoPregunta(tipoPregunta.get());
+      }
       CuestionarioEntity objCuestionarioSave = this.cuestionarioRepository.save(objCuestionarioEntity);
       Cuestionario objCuestionarioResponse = this.cuestionarioMapper.map(objCuestionarioSave, Cuestionario.class);
       return objCuestionarioResponse;
