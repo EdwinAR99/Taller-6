@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/docente")
 @RequiredArgsConstructor
 @Validated
 public class DocenteRestController {
@@ -25,7 +25,7 @@ public class DocenteRestController {
   private final DocenteManagementCUIntPort objManageDocenteCUInt;
   private final DocenteMapperInfrastructureDomain objMapper;
 
-  @GetMapping("/docente/{id}")
+  @GetMapping("/{id}")
   public ResponseEntity<DocenteDTOResponse> getDocente(
     @PathVariable Integer id
   ) {
@@ -39,7 +39,7 @@ public class DocenteRestController {
     return objRespuesta;
   }
 
-  @PostMapping("/docente")
+  @PostMapping("/")
   public ResponseEntity<DocenteDTOResponse> create(
     @RequestBody DocenteDTORequest objDocente
   ) {

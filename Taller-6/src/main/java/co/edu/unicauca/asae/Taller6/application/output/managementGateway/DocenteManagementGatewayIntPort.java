@@ -1,5 +1,6 @@
 package co.edu.unicauca.asae.Taller6.application.output.managementGateway;
 
+import co.edu.unicauca.asae.Taller6.domain.models.Departamento;
 import co.edu.unicauca.asae.Taller6.domain.models.Docente;
 
 public interface DocenteManagementGatewayIntPort {
@@ -10,4 +11,6 @@ public interface DocenteManagementGatewayIntPort {
   public Docente saveDocente(Docente objDocente);
 
   public Docente getDocente(Integer id);
+
+  public Departamento getDepartamento(Integer id);
 }

@@ -10,12 +10,11 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
-import co.edu.unicauca.asae.Taller6.domain.models.Cuestionario;
+import co.edu.unicauca.asae.Taller6.domain.models.Departamento;
 import co.edu.unicauca.asae.Taller6.domain.models.Docente;
-import co.edu.unicauca.asae.Taller6.domain.models.Pregunta;
-import co.edu.unicauca.asae.Taller6.domain.models.TipoPregunta;
-import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.CuestionarioEntity;
+import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.DepartamentoEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.DocenteEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.PreguntaEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.TipoPreguntaEntity;
@@ -23,6 +22,7 @@ import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.
 @Configuration
 public class Mapper {
 
+  
   @Bean
   @Qualifier("createDocenteMapper")
   public ModelMapper createDocenteMapper() {
@@ -32,6 +32,16 @@ public class Mapper {
         return objMapper;
   }
   
+  @Primary
+  @Bean
+  @Qualifier("DepartamentoMapper")
+  public ModelMapper DepartamentoMapper() {
+    ModelMapper objMapper = new ModelMapper();
+        TypeMap<DepartamentoEntity, Departamento> departamentoMap = objMapper.emptyTypeMap(DepartamentoEntity.class, Departamento.class);
+        return objMapper;
+  }
+  
+   /* 
   @Bean
   @Qualifier("createCuestionarioMapper")
   public ModelMapper crearCuestionarioMapper() {
@@ -65,5 +75,5 @@ public class Mapper {
 
         return modelMapper;
   }
-  
+  */
 }
