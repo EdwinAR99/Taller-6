@@ -20,11 +20,15 @@ public class DocenteEntity extends PersonaEntity {
    @OneToOne(mappedBy = "objDocenteEntity",cascade = {CascadeType.ALL})
    private TelefonoEntity objTelefonoEntity;
 
-   @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+   @ManyToMany(
+      fetch = FetchType.EAGER, 
+      cascade = {CascadeType.PERSIST})
    @JoinTable(name = "departamentoDocentes", joinColumns = @JoinColumn(name = "idPersona"), inverseJoinColumns = @JoinColumn(name = "idDepartamento"))
    private List<DepartamentoEntity> listaDepartamentos;
 
-   @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, mappedBy = "objPersona")
+   @OneToMany(
+      fetch = FetchType.EAGER, 
+      cascade = {CascadeType.ALL}, mappedBy = "objPersona")
    private List<RespuestaEntity> listaRespuestas;
 
    public DocenteEntity() {

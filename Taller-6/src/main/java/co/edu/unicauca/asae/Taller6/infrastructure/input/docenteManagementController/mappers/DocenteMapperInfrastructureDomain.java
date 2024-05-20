@@ -17,10 +17,12 @@ public interface DocenteMapperInfrastructureDomain {
 
   RespuestaDTOResponse map(Respuesta respuesta);
 
-  List<RespuestaDTOResponse> mapList(List<Respuesta> respuestas);
+  //List<RespuestaDTOResponse> mapList(List<Respuesta> respuestas);
   
   Docente mapperOfRequestToDocente(DocenteDTORequest docente);
-
+  
+ // Docente mapperOfResponseToDocente(DocenteDTOResponse docente);
+ 
   DocenteDTOResponse mapperOfResponseToDocente(Docente objDocente);
 
   List<DocenteDTOResponse> mapperOfResponseToDocentes(List<Docente> docentes);

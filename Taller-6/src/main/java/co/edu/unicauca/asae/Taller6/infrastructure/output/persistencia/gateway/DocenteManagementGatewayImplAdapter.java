@@ -59,11 +59,12 @@ public class DocenteManagementGatewayImplAdapter
 
   @Override
   public Docente getDocente(Integer id) {
+    
     Optional<DocenteEntity> objDocenteEntityR =
       this.objDocenteRepository.findById(id);
     Docente objDocenteEntityResponse =
       this.docenteModelMapper.map(objDocenteEntityR, Docente.class);
-    return objDocenteEntityResponse;
+      return objDocenteEntityResponse;
   }
 
   @Override

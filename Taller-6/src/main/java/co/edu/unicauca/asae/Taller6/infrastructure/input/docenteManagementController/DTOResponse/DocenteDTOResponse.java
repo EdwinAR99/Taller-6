@@ -17,7 +17,6 @@ public class DocenteDTOResponse extends PersonaDTOResponse {
     private TelefonoDTOResponse objTelefono;
     private List<DepartamentoDTOResponse> listaDepartamentos;
     private List<RespuestaDTOResponse> listaRespuestas;
-
     public DocenteDTOResponse(int idPersona, String tipoIdentificacion,
             String numeroIdentificacion,
             String nombres,
