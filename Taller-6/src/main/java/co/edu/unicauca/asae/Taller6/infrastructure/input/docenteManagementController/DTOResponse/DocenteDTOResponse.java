@@ -17,17 +17,11 @@ public class DocenteDTOResponse extends PersonaDTOResponse {
     private TelefonoDTOResponse objTelefono;
     private List<DepartamentoDTOResponse> listaDepartamentos;
     private List<RespuestaDTOResponse> listaRespuestas;
-
     public DocenteDTOResponse(int idPersona, String tipoIdentificacion,
             String numeroIdentificacion,
             String nombres,
-            String apellidos,
-            String correo,
-            String vinculacion) {
+            String apellidos) {
         super(idPersona, tipoIdentificacion, numeroIdentificacion, nombres, apellidos);
-        this.correo = correo;
-        this.vinculacion = vinculacion;
-        this.listaDepartamentos = new ArrayList<DepartamentoDTOResponse>();
-        this.listaRespuestas = new ArrayList<RespuestaDTOResponse>();
+
     }
 }

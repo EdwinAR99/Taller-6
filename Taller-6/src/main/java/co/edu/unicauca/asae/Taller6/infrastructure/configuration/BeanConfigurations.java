@@ -6,9 +6,7 @@ import co.edu.unicauca.asae.Taller6.application.output.managementGateway.Cuestio
 import co.edu.unicauca.asae.Taller6.application.output.managementGateway.DocenteManagementGatewayIntPort;
 import co.edu.unicauca.asae.Taller6.domain.useCases.CuestionarioManagementCUAdapter;
 import co.edu.unicauca.asae.Taller6.domain.useCases.DocenteManagementCUAdapter;
-import co.edu.unicauca.asae.Taller6.infrastructure.input.docenteManagementController.mappers.DocenteMapperInfrastructureDomain;
 
-import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
