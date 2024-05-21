@@ -14,6 +14,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,10 +46,16 @@ public class CuestionarioManagementGatewayImplAdapter implements CuestionarioMan
       for (int i = 0; i < objCuestionarioEntity.getListaPreguntas().size();i++){
          objCuestionarioEntity.getListaPreguntas().get(i).setObjCuestionario(objCuestionarioEntity);
          Optional<TipoPreguntaEntity> tipoPregunta = this.tipoPreguntaRepository.findById(objCuestionario.getListaPreguntas().get(i).getObjTipoPregunta().getIdTipoPregunta());
+         tipoPregunta.get().getListaPreguntas().add(objCuestionarioEntity.getListaPreguntas().get(i));
          objCuestionarioEntity.getListaPreguntas().get(i).setObjTipoPregunta(tipoPregunta.get());
       }
       CuestionarioEntity objCuestionarioSave = this.cuestionarioRepository.save(objCuestionarioEntity);
       Cuestionario objCuestionarioResponse = this.cuestionarioMapper.map(objCuestionarioSave, Cuestionario.class);
+      /*List<Pregunta> lista = new ArrayList<Pregunta>();
+      for (int i = 0; i < objCuestionarioSave.getListaPreguntas().size();i++){
+         lista.add(this.cuestionarioMapper.map(objCuestionarioSave.getListaPreguntas().get(i), Pregunta.class));
+      }
+      objCuestionarioResponse.setListaPreguntas(lista);*/
       return objCuestionarioResponse;
    }
 
