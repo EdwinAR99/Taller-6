@@ -5,11 +5,10 @@ import co.edu.unicauca.asae.Taller6.infrastructure.input.cuestionarioManagementC
 import co.edu.unicauca.asae.Taller6.infrastructure.input.cuestionarioManagementController.DTOResponse.CuestionarioDTOResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {PreguntaMapperInfrastructureDomain.class, TipoPreguntaMapperInfraestructureDomain.class})
 public interface CuestionarioMapperInfrastructureDomain {
 
    @Mapping(target = "idCuestionario", ignore = true)
