@@ -5,6 +5,7 @@ import co.edu.unicauca.asae.Taller6.application.output.formatterResponse.Docente
 import co.edu.unicauca.asae.Taller6.application.output.managementGateway.DocenteManagementGatewayIntPort;
 import co.edu.unicauca.asae.Taller6.domain.models.Departamento;
 import co.edu.unicauca.asae.Taller6.domain.models.Docente;
+import co.edu.unicauca.asae.Taller6.domain.models.Telefono;
 
 public class DocenteManagementCUAdapter implements DocenteManagementCUIntPort {
 
@@ -36,6 +37,7 @@ public class DocenteManagementCUAdapter implements DocenteManagementCUIntPort {
         //System.out.println(objDocente.getListaDepartamentos().get(0).getIdDepartamento());
         //objDocente.addDepartamento(dpto1);
         //System.out.println("este es el dpto" + dpto1);
+
         objDocenteCreated = this.objDocenteManagementGatewayIntPort.saveDocente(objDocente);
       }
     }

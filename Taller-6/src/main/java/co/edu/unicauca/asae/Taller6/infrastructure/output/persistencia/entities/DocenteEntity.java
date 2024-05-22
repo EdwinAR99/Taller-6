@@ -17,8 +17,8 @@ public class DocenteEntity extends PersonaEntity {
    @Column
    private String vinculacion;
 
-   @OneToOne(mappedBy = "objDocenteEntity",cascade = {CascadeType.ALL})
-   private TelefonoEntity objTelefonoEntity;
+   @OneToOne(mappedBy = "objDocente",cascade = {CascadeType.ALL})
+   private TelefonoEntity objTelefono;
 
    @ManyToMany(
       fetch = FetchType.EAGER, 

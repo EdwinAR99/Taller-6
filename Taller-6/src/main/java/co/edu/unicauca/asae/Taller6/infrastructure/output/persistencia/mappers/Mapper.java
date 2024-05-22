@@ -54,7 +54,7 @@ public class Mapper {
     docenteMap.addMappings(mapper -> {
       mapper.map(DocenteEntity::getCorreo, Docente::setCorreo);
       mapper.map(DocenteEntity::getVinculacion, Docente::setVinculacion);
-      mapper.map(DocenteEntity::getObjTelefonoEntity, Docente::setObjTelefono);
+      mapper.map(DocenteEntity::getObjTelefono, Docente::setObjTelefono);
       mapper.map(DocenteEntity::getListaDepartamentos, Docente::setListaDepartamentos);
       mapper.map(DocenteEntity::getListaRespuestas, Docente::setListaRespuestas);
     });

@@ -5,6 +5,7 @@ import co.edu.unicauca.asae.Taller6.domain.models.Departamento;
 import co.edu.unicauca.asae.Taller6.domain.models.Docente;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.DepartamentoEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.DocenteEntity;
+import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.TelefonoEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.repositories.IDepartamentoRepository;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.repositories.IDocenteRepository;
 import java.util.Optional;
@@ -50,6 +51,14 @@ public class DocenteManagementGatewayImplAdapter
   public Docente saveDocente(Docente objDocente) {
     DocenteEntity objDocenteEntity =
       this.docenteModelMapper.map(objDocente, DocenteEntity.class);
+      //System.out.println(objDocente.getListaDepartamentos().get(0).getIdDepartamento());
+      //objDocente.addDepartamento(dpto1);
+      //System.out.println("este es el dpto" + dpto1);
+      //agregar docente al telefono
+      TelefonoEntity objTelefono=new TelefonoEntity();
+      objTelefono=objDocenteEntity.getObjTelefono();
+      objTelefono.setObjDocente(objDocenteEntity);
+      objDocenteEntity.setObjTelefono(objTelefono);
     DocenteEntity objDocenteEntityR =
       this.objDocenteRepository.save(objDocenteEntity);
     Docente objDocenteResponse =
