@@ -10,21 +10,23 @@ import co.edu.unicauca.asae.Taller6.infrastructure.input.respuestaManagementCont
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring" )
+@Mapper(componentModel = "spring",uses = {DepartamentoMapperInfraestructureDomain.class,TelefonoMapperInfraestructureDomain.class} )
 public interface DocenteMapperInfrastructureDomain {
-
-
-  RespuestaDTOResponse map(Respuesta respuesta);
+  
+  //RespuestaDTOResponse map(Respuesta respuesta);
 
   //List<RespuestaDTOResponse> mapList(List<Respuesta> respuestas);
-  
+  @Mapping(target = "listaRespuestas", ignore = true)
   Docente mapperOfRequestToDocente(DocenteDTORequest docente);
   
  // Docente mapperOfResponseToDocente(DocenteDTOResponse docente);
- 
-  DocenteDTOResponse mapperOfResponseToDocente(Docente objDocente);
+  @Mapping(target = "listaRespuestas", ignore = true)
+  DocenteDTORequest mapperOfResponseToDocente(Docente objDocente);
 
-  List<DocenteDTOResponse> mapperOfResponseToDocentes(List<Docente> docentes);
+  @Mapping(target = "listaRespuestas", ignore = true)
+  List<DocenteDTORequest> mapperOfResponseToDocentes(List<Docente> docentes);
+
 }
 

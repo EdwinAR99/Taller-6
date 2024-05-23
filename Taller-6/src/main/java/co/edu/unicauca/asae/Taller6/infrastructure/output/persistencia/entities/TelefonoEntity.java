@@ -19,6 +19,6 @@ public class TelefonoEntity {
 
    @OneToOne(cascade = {CascadeType.MERGE})
    @JoinColumn(name = "idPersona")
-   private DocenteEntity objDocenteEntity;
+   private DocenteEntity objDocente;
 
 }

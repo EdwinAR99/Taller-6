@@ -31,11 +31,6 @@ public class DocenteManagementCUAdapter implements DocenteManagementCUIntPort {
         this.objDocenteFormatterResponseIntPort.returnResponseErrorExistEmail(
             "Error, se encuentra en el sistema un docente registrado con ese correo");
       } else {
-        //Departamento dpto1 = new Departamento();
-        //dpto1 = getDepartamento(objDocente.getListaDepartamentos().get(0).getIdDepartamento());
-        //System.out.println(objDocente.getListaDepartamentos().get(0).getIdDepartamento());
-        //objDocente.addDepartamento(dpto1);
-        //System.out.println("este es el dpto" + dpto1);
         objDocenteCreated = this.objDocenteManagementGatewayIntPort.saveDocente(objDocente);
       }
     }

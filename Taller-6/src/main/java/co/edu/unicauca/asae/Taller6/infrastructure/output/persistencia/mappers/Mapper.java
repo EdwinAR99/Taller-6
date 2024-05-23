@@ -35,30 +35,24 @@ public class Mapper {
   @Bean
   @Qualifier("createDocenteMapper")
   public ModelMapper createDocenteMapper() {
-    /*
-     * ModelMapper objMapper = new ModelMapper();
-     * TypeMap<DocenteEntity, Docente> docenteMap =
-     * objMapper.emptyTypeMap(DocenteEntity.class, Docente.class);
-     * docenteMap.addMapping(DocenteEntity::getObjTelefonoEntity,Docente::
-     * setObjTelefono).implicitMappings();
-     * docenteMap.addMapping(DocenteEntity::getListaDepartamentos,Docente::
-     * setListaDepartamentos).implicitMappings();
-     * return objMapper;
-     */
+  
     ModelMapper objMapper = new ModelMapper();
 
+    objMapper.getConfiguration()
+        .setAmbiguityIgnored(true);
     // Mapear DocenteEntity a Docente
-    TypeMap<DocenteEntity, Docente> docenteMap = objMapper.createTypeMap(DocenteEntity.class, Docente.class);
-
-    // Mapear propiedades de DocenteEntity a Docente
-    docenteMap.addMappings(mapper -> {
-      mapper.map(DocenteEntity::getCorreo, Docente::setCorreo);
-      mapper.map(DocenteEntity::getVinculacion, Docente::setVinculacion);
-      mapper.map(DocenteEntity::getObjTelefonoEntity, Docente::setObjTelefono);
+    objMapper.createTypeMap(DocenteEntity.class, Docente.class)
+     .addMappings(mapper -> {
+      mapper.map(DocenteEntity::getObjTelefono, Docente::setObjTelefono);
       mapper.map(DocenteEntity::getListaDepartamentos, Docente::setListaDepartamentos);
-      mapper.map(DocenteEntity::getListaRespuestas, Docente::setListaRespuestas);
     });
 
+    objMapper.createTypeMap(Docente.class, DocenteEntity.class)
+    .addMappings(mapper -> {
+     mapper.map(Docente::getObjTelefono, DocenteEntity::setObjTelefono);
+     mapper.map(Docente::getListaDepartamentos, DocenteEntity::setListaDepartamentos);
+   });
+ /* 
     // Configurar el mapeo de las propiedades heredadas de PersonaEntity a Persona
     objMapper.typeMap(PersonaEntity.class, Persona.class).addMappings(mapper -> {
       mapper.map(PersonaEntity::getIdPersona, Persona::setIdPersona);
@@ -68,23 +62,34 @@ public class Mapper {
       mapper.map(PersonaEntity::getApellidos, Persona::setApellidos);
     });
 
-    // Configurar el mapeo para los subobjetos
-    objMapper.createTypeMap(TelefonoEntity.class, Telefono.class);
-    objMapper.createTypeMap(DepartamentoEntity.class, Departamento.class);
+    objMapper.typeMap(Persona.class, PersonaEntity.class).addMappings(mapper -> {
+      mapper.map(Persona::getIdPersona, PersonaEntity::setIdPersona);
+      mapper.map(Persona::getTipoIdentificacion, PersonaEntity::setTipoIdentificacion);
+      mapper.map(Persona::getNumeroIdentificacion, PersonaEntity::setNumeroIdentificacion);
+      mapper.map(Persona::getNombres, PersonaEntity::setNombres);
+      mapper.map(Persona::getApellidos, PersonaEntity::setApellidos);
+    });
+*/
+    // mapper telefono
+    objMapper.createTypeMap(TelefonoEntity.class, Telefono.class)
+        .addMappings(mapper -> mapper.skip(Telefono::setObjDocente));
+
+    objMapper.createTypeMap(Telefono.class, TelefonoEntity.class)
+        .addMappings(mapper -> mapper.skip(TelefonoEntity::setObjDocente));
+
+    //mapper departamento
+    objMapper.createTypeMap(DepartamentoEntity.class, Departamento.class)
+    .addMappings(mapper -> mapper.skip(Departamento::setListaDocentes));
+
+    objMapper.createTypeMap( Departamento.class,DepartamentoEntity.class)
+    .addMappings(mapper -> mapper.skip(DepartamentoEntity::setListaDocentes));
+
     objMapper.createTypeMap(RespuestaEntity.class, Respuesta.class);
 
     return objMapper;
 
   }
 
-  @Bean
-  @Qualifier("DepartamentoMapper")
-  public ModelMapper DepartamentoMapper() {
-    ModelMapper objMapper = new ModelMapper();
-    TypeMap<DepartamentoEntity, Departamento> departamentoMap = objMapper.emptyTypeMap(DepartamentoEntity.class,
-        Departamento.class);
-    return objMapper;
-  }
 
   @Bean
   @Qualifier("createCuestionarioMapper")
@@ -92,7 +97,7 @@ public class Mapper {
     ModelMapper modelMapper = new ModelMapper();
 
     modelMapper.getConfiguration()
-     .setAmbiguityIgnored(true);
+        .setAmbiguityIgnored(true);
 
     // Mapeo de Cuestionario a CuestionarioEntity
     modelMapper.typeMap(Cuestionario.class, CuestionarioEntity.class)

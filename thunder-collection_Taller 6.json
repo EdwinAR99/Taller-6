@@ -1,0 +1,28 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Taller 6",
+    "dateExported": "2024-05-23T00:23:44.670Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b0651774-c673-4821-b8ec-4f0b5ac72749",
+            "colId": "7ad34894-1ec0-4dd7-a594-6ddc92e58f3c",
+            "containerId": "",
+            "name": "crear docente",
+            "url": "localhost:9010/docente/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-23T00:23:34.003Z",
+            "modified": "2024-05-23T00:23:34.003Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"tipoIdentificacion\": \"CC\",\n  \"numeroIdentificacion\": \"98764321\",\n  \"nombres\": \"Juan Carlos\",\n  \"apellidos\": \"Pérez Gómez\",\n  \"correo\": \"jiperez@example.com\",\n  \"vinculacion\": \"Empleado\",\n  \"objTelefono\":{\"tipoTelefono\":\"celular\",\"numero\":\"3127622688\"},\n  \"listaDepartamentos\": [\n    {\n      \"idDepartamento\":1\n    },\n    {\n      \"idDepartamento\":3\n    }]\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
