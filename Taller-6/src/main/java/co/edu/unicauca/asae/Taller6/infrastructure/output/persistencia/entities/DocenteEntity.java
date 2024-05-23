@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class DocenteEntity extends PersonaEntity {
 
    @Column(unique = true)
@@ -17,24 +18,19 @@ public class DocenteEntity extends PersonaEntity {
    @Column
    private String vinculacion;
 
-   @OneToOne(mappedBy = "objDocente",cascade = {CascadeType.ALL})
+   @OneToOne(mappedBy = "objDocente",cascade = {CascadeType.PERSIST})
    private TelefonoEntity objTelefono;
 
    @ManyToMany(
       fetch = FetchType.EAGER, 
-      cascade = {CascadeType.PERSIST})
+      cascade = {CascadeType.MERGE})
    @JoinTable(name = "departamentoDocentes", joinColumns = @JoinColumn(name = "idPersona"), inverseJoinColumns = @JoinColumn(name = "idDepartamento"))
    private List<DepartamentoEntity> listaDepartamentos;
 
    @OneToMany(
-      fetch = FetchType.EAGER, 
-      cascade = {CascadeType.ALL}, mappedBy = "objPersona")
+      fetch = FetchType.LAZY, 
+      cascade = {CascadeType.PERSIST}, mappedBy = "objPersona")
    private List<RespuestaEntity> listaRespuestas;
-
-   public DocenteEntity() {
-      this.listaDepartamentos = new ArrayList<DepartamentoEntity>();
-      this.listaRespuestas = new ArrayList<RespuestaEntity>();
-   }
 
    public DocenteEntity(String tipoIdentificacion,
                         String numeroIdentificacion,
@@ -45,8 +41,6 @@ public class DocenteEntity extends PersonaEntity {
       super(tipoIdentificacion, numeroIdentificacion, nombres, apellidos);
       this.correo = correo;
       this.vinculacion = vinculacion;
-      this.listaDepartamentos = new ArrayList<DepartamentoEntity>();
-      this.listaRespuestas = new ArrayList<RespuestaEntity>();
    }
 
    public void addDepartamento(DepartamentoEntity dpto) {

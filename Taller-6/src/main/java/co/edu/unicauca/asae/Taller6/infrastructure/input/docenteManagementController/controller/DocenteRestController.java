@@ -3,8 +3,8 @@ package co.edu.unicauca.asae.Taller6.infrastructure.input.docenteManagementContr
 import co.edu.unicauca.asae.Taller6.application.input.DocenteManagementCUIntPort;
 import co.edu.unicauca.asae.Taller6.domain.models.Docente;
 import co.edu.unicauca.asae.Taller6.infrastructure.input.docenteManagementController.DTORequest.DocenteDTORequest;
-import co.edu.unicauca.asae.Taller6.infrastructure.input.docenteManagementController.DTOResponse.DocenteDTOResponse;
 import co.edu.unicauca.asae.Taller6.infrastructure.input.docenteManagementController.mappers.DocenteMapperInfrastructureDomain;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +26,10 @@ public class DocenteRestController {
   private final DocenteMapperInfrastructureDomain objMapper;
 
   @GetMapping("/{id}")
-  public ResponseEntity<DocenteDTOResponse> getDocente(
+  public ResponseEntity<DocenteDTORequest> getDocente(
     @PathVariable Integer id
   ) {
-    ResponseEntity<DocenteDTOResponse> objRespuesta = new ResponseEntity<DocenteDTOResponse>(
+    ResponseEntity<DocenteDTORequest> objRespuesta = new ResponseEntity<DocenteDTORequest>(
       objMapper.mapperOfResponseToDocente(
         this.objManageDocenteCUInt.getDocente(id)
       ),
@@ -39,14 +39,14 @@ public class DocenteRestController {
   }
 
   @PostMapping("/")
-  public ResponseEntity<DocenteDTOResponse> create(
+  public ResponseEntity<DocenteDTORequest> create(@Valid
     @RequestBody DocenteDTORequest objDocente
   ) {
     Docente objDocenteCreate = objMapper.mapperOfRequestToDocente(objDocente);
     Docente objDocenteCreated = objManageDocenteCUInt.createDocente(
       objDocenteCreate
     );
-    ResponseEntity<DocenteDTOResponse> objResponse = new ResponseEntity<DocenteDTOResponse>(
+    ResponseEntity<DocenteDTORequest> objResponse = new ResponseEntity<DocenteDTORequest>(
       objMapper.mapperOfResponseToDocente(objDocenteCreated),
       HttpStatus.CREATED
     );

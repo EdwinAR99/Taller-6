@@ -5,7 +5,6 @@ import co.edu.unicauca.asae.Taller6.application.output.formatterResponse.Docente
 import co.edu.unicauca.asae.Taller6.application.output.managementGateway.DocenteManagementGatewayIntPort;
 import co.edu.unicauca.asae.Taller6.domain.models.Departamento;
 import co.edu.unicauca.asae.Taller6.domain.models.Docente;
-import co.edu.unicauca.asae.Taller6.domain.models.Telefono;
 
 public class DocenteManagementCUAdapter implements DocenteManagementCUIntPort {
 
@@ -32,12 +31,6 @@ public class DocenteManagementCUAdapter implements DocenteManagementCUIntPort {
         this.objDocenteFormatterResponseIntPort.returnResponseErrorExistEmail(
             "Error, se encuentra en el sistema un docente registrado con ese correo");
       } else {
-        //Departamento dpto1 = new Departamento();
-        //dpto1 = getDepartamento(objDocente.getListaDepartamentos().get(0).getIdDepartamento());
-        //System.out.println(objDocente.getListaDepartamentos().get(0).getIdDepartamento());
-        //objDocente.addDepartamento(dpto1);
-        //System.out.println("este es el dpto" + dpto1);
-
         objDocenteCreated = this.objDocenteManagementGatewayIntPort.saveDocente(objDocente);
       }
     }

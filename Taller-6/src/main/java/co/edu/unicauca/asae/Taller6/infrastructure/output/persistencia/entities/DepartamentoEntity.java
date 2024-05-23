@@ -20,7 +20,7 @@ public class DepartamentoEntity {
    @Column(nullable = false)
    private String descripcion;
 
-   @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST})
+   @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE})
    @JoinTable(name = "departamentoDocentes", joinColumns = @JoinColumn(name = "idDepartamento"), inverseJoinColumns = @JoinColumn(name = "idPersona"))
    private List<DocenteEntity> listaDocentes;
 
@@ -28,4 +28,5 @@ public class DepartamentoEntity {
       this.listaDocentes = new ArrayList<DocenteEntity>();
    }
 
+   public void addDocente(DocenteEntity docente) {this.listaDocentes.add(docente);}
 }

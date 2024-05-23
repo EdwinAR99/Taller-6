@@ -12,4 +12,6 @@ public class Departamento {
    private String descripcion;
    private List<Docente> listaDocentes;
 
+
+   public void addDocente(Docente docente) {this.listaDocentes.add(docente);}
 }

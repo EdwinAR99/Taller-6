@@ -34,6 +34,7 @@ public class Docente extends Persona{
 
    public void addDepartamento(Departamento departamento) {this.listaDepartamentos.add(departamento);}
 
-   public void addRespuesta(Respuesta respuesta) {this.listaRespuestas.add(respuesta);}
+   
+   //public void addRespuesta(Respuesta respuesta) {this.listaRespuestas.add(respuesta);}
 
 }
