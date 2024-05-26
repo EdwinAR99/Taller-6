@@ -7,13 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class RespuestaDTOResponse {
-
-    private int idRespuesta;
+public class CuestionarioDTOResponse {
+    private int idCuestionario;
+    private String titulo;
     private String descripcion;
-    private PersonaDTOResponse objPersona;
-    private PreguntaDTOResponse objPregunta;
-
-    public RespuestaDTOResponse() {
-    }
 }

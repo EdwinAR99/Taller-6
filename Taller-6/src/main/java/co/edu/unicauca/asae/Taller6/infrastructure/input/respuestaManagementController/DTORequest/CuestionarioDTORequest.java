@@ -2,14 +2,15 @@ package co.edu.unicauca.asae.Taller6.infrastructure.input.respuestaManagementCon
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
-public class RespuestaDTORequest {
+@NoArgsConstructor
+public class CuestionarioDTORequest {
 
-    private String descripcion;
-    private PersonaDTORequest objPersona;
-    private PreguntaDTORequest objPregunta;
+   private int idCuestionario;
+
 }
