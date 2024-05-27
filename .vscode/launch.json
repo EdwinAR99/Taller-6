@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Taller6Application<Taller-6>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "co.edu.unicauca.asae.Taller6.Taller6Application",
+            "projectName": "Taller-6",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
