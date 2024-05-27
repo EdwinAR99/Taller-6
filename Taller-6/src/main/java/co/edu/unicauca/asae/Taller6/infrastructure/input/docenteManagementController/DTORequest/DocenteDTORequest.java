@@ -1,6 +1,7 @@
 package co.edu.unicauca.asae.Taller6.infrastructure.input.docenteManagementController.DTORequest;
 
 import co.edu.unicauca.asae.Taller6.infrastructure.input.respuestaManagementController.DTORequest.RespuestaDTORequest;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -21,8 +22,11 @@ public class DocenteDTORequest extends PersonaDTORequest {
   @NotEmpty(message = "{docente.vinculacion.empty}")
   private String vinculacion;
   @NotNull(message = "{docente.telefono.empty}")
+  @Valid
   private TelefonoDTORequest objTelefono;
+  @Valid
   private List<DepartamentoDTORequest> listaDepartamentos;
+  @Valid
   private List<RespuestaDTORequest> listaRespuestas;
 /* 
   public DocenteDTORequest(int idPersona, String tipoIdentificacion, String numeroIdentificacion, String nombres,

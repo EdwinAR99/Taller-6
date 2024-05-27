@@ -6,6 +6,7 @@ import lombok.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@ToString
 public class PersonaEntity {
 
    @Id
@@ -23,11 +24,12 @@ public class PersonaEntity {
 
    @Column(nullable = false)
    private String apellidos;
-
+/* 
    public PersonaEntity(String numeroIdentificacion, String nombres, String apellidos, String tipoIdentificacion) {
       this.numeroIdentificacion = numeroIdentificacion;
       this.nombres = nombres;
       this.apellidos = apellidos;
       this.tipoIdentificacion = tipoIdentificacion;
    }
+   */
 }

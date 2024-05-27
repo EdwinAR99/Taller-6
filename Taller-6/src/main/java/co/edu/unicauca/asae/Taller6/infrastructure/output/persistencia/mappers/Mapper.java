@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
+import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -35,24 +36,27 @@ public class Mapper {
   @Bean
   @Qualifier("createDocenteMapper")
   public ModelMapper createDocenteMapper() {
-  
+
     ModelMapper objMapper = new ModelMapper();
 
     objMapper.getConfiguration()
         .setAmbiguityIgnored(true);
+
     // Mapear DocenteEntity a Docente
     objMapper.createTypeMap(DocenteEntity.class, Docente.class)
-     .addMappings(mapper -> {
-      mapper.map(DocenteEntity::getObjTelefono, Docente::setObjTelefono);
-      mapper.map(DocenteEntity::getListaDepartamentos, Docente::setListaDepartamentos);
-    });
+        .addMappings(mapper -> {
+          mapper.map(DocenteEntity::getObjTelefono, Docente::setObjTelefono);
+          mapper.map(DocenteEntity::getListaDepartamentos, Docente::setListaDepartamentos);
+          mapper.map(DocenteEntity::getListaRespuestas, Docente::setListaRespuestas);
+        });
 
     objMapper.createTypeMap(Docente.class, DocenteEntity.class)
-    .addMappings(mapper -> {
-     mapper.map(Docente::getObjTelefono, DocenteEntity::setObjTelefono);
-     mapper.map(Docente::getListaDepartamentos, DocenteEntity::setListaDepartamentos);
-   });
- /* 
+        .addMappings(mapper -> {
+          mapper.map(Docente::getObjTelefono, DocenteEntity::setObjTelefono);
+          mapper.map(Docente::getListaDepartamentos, DocenteEntity::setListaDepartamentos);
+          mapper.map(Docente::getListaRespuestas, DocenteEntity::setListaRespuestas);
+        });
+
     // Configurar el mapeo de las propiedades heredadas de PersonaEntity a Persona
     objMapper.typeMap(PersonaEntity.class, Persona.class).addMappings(mapper -> {
       mapper.map(PersonaEntity::getIdPersona, Persona::setIdPersona);
@@ -69,7 +73,7 @@ public class Mapper {
       mapper.map(Persona::getNombres, PersonaEntity::setNombres);
       mapper.map(Persona::getApellidos, PersonaEntity::setApellidos);
     });
-*/
+
     // mapper telefono
     objMapper.createTypeMap(TelefonoEntity.class, Telefono.class)
         .addMappings(mapper -> mapper.skip(Telefono::setObjDocente));
@@ -77,19 +81,22 @@ public class Mapper {
     objMapper.createTypeMap(Telefono.class, TelefonoEntity.class)
         .addMappings(mapper -> mapper.skip(TelefonoEntity::setObjDocente));
 
-    //mapper departamento
+    // mapper departamento
     objMapper.createTypeMap(DepartamentoEntity.class, Departamento.class)
-    .addMappings(mapper -> mapper.skip(Departamento::setListaDocentes));
+        .addMappings(mapper -> mapper.skip(Departamento::setListaDocentes));
 
-    objMapper.createTypeMap( Departamento.class,DepartamentoEntity.class)
-    .addMappings(mapper -> mapper.skip(DepartamentoEntity::setListaDocentes));
+    objMapper.createTypeMap(Departamento.class, DepartamentoEntity.class)
+        .addMappings(mapper -> mapper.skip(DepartamentoEntity::setListaDocentes));
 
-    objMapper.createTypeMap(RespuestaEntity.class, Respuesta.class);
+    objMapper.createTypeMap(RespuestaEntity.class, Respuesta.class)
+        .addMappings(mapper -> mapper.skip(Respuesta::setObjPersona));
+
+    objMapper.createTypeMap(Respuesta.class, RespuestaEntity.class)
+        .addMappings(mapper -> mapper.skip(RespuestaEntity::setObjPersona));
 
     return objMapper;
 
   }
-
 
   @Bean
   @Qualifier("createCuestionarioMapper")
