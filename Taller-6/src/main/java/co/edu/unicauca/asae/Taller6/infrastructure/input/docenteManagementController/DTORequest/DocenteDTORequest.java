@@ -1,6 +1,6 @@
 package co.edu.unicauca.asae.Taller6.infrastructure.input.docenteManagementController.DTORequest;
 
-import co.edu.unicauca.asae.Taller6.infrastructure.input.respuestaManagementController.DTORequest.RespuestaDTORequest;
+import co.edu.unicauca.asae.Taller6.infrastructure.input.respuestaManagementController.DTOResponse.RespuestaDTOResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -27,7 +27,7 @@ public class DocenteDTORequest extends PersonaDTORequest {
   @Valid
   private List<DepartamentoDTORequest> listaDepartamentos;
   @Valid
-  private List<RespuestaDTORequest> listaRespuestas;
+  private List<RespuestaDTOResponse> listaRespuestas;
 /* 
   public DocenteDTORequest(int idPersona, String tipoIdentificacion, String numeroIdentificacion, String nombres,
       String apellidos) {
