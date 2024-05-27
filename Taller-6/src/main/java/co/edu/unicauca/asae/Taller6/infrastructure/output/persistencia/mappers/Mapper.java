@@ -73,7 +73,7 @@ public class Mapper {
       mapper.map(Persona::getNombres, PersonaEntity::setNombres);
       mapper.map(Persona::getApellidos, PersonaEntity::setApellidos);
     });
-
+    
     // mapper telefono
     objMapper.createTypeMap(TelefonoEntity.class, Telefono.class)
         .addMappings(mapper -> mapper.skip(Telefono::setObjDocente));
@@ -98,6 +98,71 @@ public class Mapper {
 
   }
 
+  @Bean
+  @Qualifier("createRespuestaMapper")
+  public ModelMapper crearRespuestaMapper() {
+
+    ModelMapper modelMapper = new ModelMapper();
+
+    modelMapper.getConfiguration()
+        .setAmbiguityIgnored(true);
+
+    // Mapear Respuesta a RespuestaEntity y viceversa
+    modelMapper.typeMap(Respuesta.class, RespuestaEntity.class)
+        .addMappings(mapper -> {
+          mapper.map(Respuesta::getObjPersona, RespuestaEntity::setObjPersona);
+          mapper.map(Respuesta::getObjPregunta, RespuestaEntity::setObjPregunta);
+        });
+
+    modelMapper.typeMap(RespuestaEntity.class, Respuesta.class)
+        .addMappings(mapper -> {
+          mapper.map(RespuestaEntity::getObjPersona, Respuesta::setObjPersona);
+          mapper.map(RespuestaEntity::getObjPregunta, Respuesta::setObjPregunta);
+        });
+
+    // Mapear Docente a DocenteEntity y viceversa
+    modelMapper.typeMap(Docente.class, DocenteEntity.class)
+        .addMappings(mapper -> {
+          mapper.skip(Docente::getObjTelefono, DocenteEntity::setObjTelefono);
+          mapper.skip(Docente::getListaDepartamentos, DocenteEntity::setListaDepartamentos);
+          mapper.skip(Docente::getListaRespuestas, DocenteEntity::setListaRespuestas);
+        });
+
+    modelMapper.typeMap(DocenteEntity.class, Docente.class)
+        .addMappings(mapper -> {
+          mapper.skip(DocenteEntity::getObjTelefono, Docente::setObjTelefono);
+          mapper.skip(DocenteEntity::getListaDepartamentos, Docente::setListaDepartamentos);
+          mapper.skip(DocenteEntity::getListaRespuestas, Docente::setListaRespuestas);
+        });
+
+    // Mapear Pregunta a PreguntaEntity y viceversa
+    modelMapper.typeMap(Pregunta.class, PreguntaEntity.class)
+        .addMappings(mapper -> {
+          mapper.map(Pregunta::getObjCuestionario, PreguntaEntity::setObjCuestionario);
+          mapper.skip(Pregunta::getObjTipoPregunta, PreguntaEntity::setObjTipoPregunta);
+          mapper.skip(Pregunta::getListaRespuestas, PreguntaEntity::setListaRespuestas);
+        });
+
+    modelMapper.typeMap(PreguntaEntity.class, Pregunta.class)
+        .addMappings(mapper -> {
+          mapper.map(PreguntaEntity::getObjCuestionario, Pregunta::setObjCuestionario);
+          mapper.skip(PreguntaEntity::getObjTipoPregunta, Pregunta::setObjTipoPregunta);
+          mapper.skip(PreguntaEntity::getListaRespuestas, Pregunta::setListaRespuestas);
+        });
+
+    // Mapear Cuestionario a CuestionarioEntity y viceversa
+    modelMapper.typeMap(Cuestionario.class, CuestionarioEntity.class)
+        .addMappings(mapper -> {
+          mapper.skip(Cuestionario::getListaPreguntas, CuestionarioEntity::setListaPreguntas);
+        });
+
+    modelMapper.typeMap(CuestionarioEntity.class, Cuestionario.class)
+        .addMappings(mapper -> {
+          mapper.skip(CuestionarioEntity::getListaPreguntas, Cuestionario::setListaPreguntas);
+        });
+    return modelMapper;
+  }
+  
   @Bean
   @Qualifier("createCuestionarioMapper")
   public ModelMapper crearCuestionarioMapper() {

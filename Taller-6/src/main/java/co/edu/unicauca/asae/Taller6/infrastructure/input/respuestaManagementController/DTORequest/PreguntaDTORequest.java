@@ -7,9 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class RespuestaDTORequest {
+public class PreguntaDTORequest {
 
-    private String descripcion;
-    private PersonaDTORequest objPersona;
-    private PreguntaDTORequest objPregunta;
+    private int idPregunta;
+
+    private CuestionarioDTORequest objCuestionario;
+
 }
