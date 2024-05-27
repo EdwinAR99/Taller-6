@@ -2,7 +2,6 @@ package co.edu.unicauca.asae.Taller6.domain.models;
 
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data @AllArgsConstructor @NoArgsConstructor @Getter @Setter

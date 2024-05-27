@@ -5,6 +5,7 @@ import lombok.*;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@ToString
 public class TelefonoEntity {
 
    @Id

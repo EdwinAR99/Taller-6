@@ -3,11 +3,15 @@ package co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.gateway;
 import co.edu.unicauca.asae.Taller6.application.output.managementGateway.DocenteManagementGatewayIntPort;
 import co.edu.unicauca.asae.Taller6.domain.models.Departamento;
 import co.edu.unicauca.asae.Taller6.domain.models.Docente;
+import co.edu.unicauca.asae.Taller6.infrastructure.output.exceptionController.exceptionStruct.ErrorCode;
+import co.edu.unicauca.asae.Taller6.infrastructure.output.exceptionController.ownExceptions.EntidadNoExisteException;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.DepartamentoEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.DocenteEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities.TelefonoEntity;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.repositories.IDepartamentoRepository;
 import co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.repositories.IDocenteRepository;
+
+
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -22,6 +26,7 @@ public class DocenteManagementGatewayImplAdapter
   private final IDepartamentoRepository objDepartamentoRepository;
   private final ModelMapper docenteModelMapper;
 
+
   public DocenteManagementGatewayImplAdapter(
       @Qualifier("createDocenteMapper") ModelMapper docenteModelMapper,
       IDocenteRepository objDocenteRepository,
@@ -31,6 +36,7 @@ public class DocenteManagementGatewayImplAdapter
     this.objDocenteRepository = objDocenteRepository;
     this.docenteModelMapper = docenteModelMapper;
     this.objDepartamentoRepository = objDepartamentoRepository;
+
   }
 
   @Override
@@ -50,7 +56,9 @@ public class DocenteManagementGatewayImplAdapter
       if (dpto1.isPresent()) {
         objDocenteEntity.getListaDepartamentos().get(i).setDescripcion(dpto1.get().getDescripcion());
         objDocenteEntity.getListaDepartamentos().get(i).setNombreDep(dpto1.get().getNombreDep());
-      }else{ System.out.println("contador " + i);}
+      } else {
+        System.out.println("contador " + i);
+      }
     }
 
     // agregar docente al telefono
@@ -65,10 +73,17 @@ public class DocenteManagementGatewayImplAdapter
 
   @Override
   public Docente getDocente(Integer id) {
-
     Optional<DocenteEntity> objDocenteEntityR = this.objDocenteRepository.findById(id);
-    Docente objDocenteEntityResponse = this.docenteModelMapper.map(objDocenteEntityR, Docente.class);
-    return objDocenteEntityResponse;
+    if (objDocenteEntityR.isPresent()) {
+      DocenteEntity docenteEntity = objDocenteEntityR.get();
+      System.out.println("entity " + objDocenteEntityR.get().getNumeroIdentificacion());
+      Docente objDocenteResponse = this.docenteModelMapper.map(docenteEntity, Docente.class);
+      System.out.println("domain " + objDocenteResponse.getIdPersona());
+      return objDocenteResponse;
+    } else {
+      throw new EntidadNoExisteException(ErrorCode.ENTIDAD_NO_ENCONTRADA);
+    }
+
   }
 
   @Override

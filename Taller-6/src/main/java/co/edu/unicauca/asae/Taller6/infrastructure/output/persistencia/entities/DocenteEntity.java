@@ -3,13 +3,14 @@ package co.edu.unicauca.asae.Taller6.infrastructure.output.persistencia.entities
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class DocenteEntity extends PersonaEntity {
 
    @Column(unique = true)
@@ -22,7 +23,7 @@ public class DocenteEntity extends PersonaEntity {
    private TelefonoEntity objTelefono;
 
    @ManyToMany(
-      fetch = FetchType.EAGER, 
+      fetch = FetchType.LAZY, 
       cascade = {CascadeType.MERGE})
    @JoinTable(name = "departamentoDocentes", joinColumns = @JoinColumn(name = "idPersona"), inverseJoinColumns = @JoinColumn(name = "idDepartamento"))
    private List<DepartamentoEntity> listaDepartamentos;
@@ -31,7 +32,7 @@ public class DocenteEntity extends PersonaEntity {
       fetch = FetchType.LAZY, 
       cascade = {CascadeType.PERSIST}, mappedBy = "objPersona")
    private List<RespuestaEntity> listaRespuestas;
-
+/* 
    public DocenteEntity(String tipoIdentificacion,
                         String numeroIdentificacion,
                         String nombres,
@@ -42,7 +43,7 @@ public class DocenteEntity extends PersonaEntity {
       this.correo = correo;
       this.vinculacion = vinculacion;
    }
-
+*/
    public void addDepartamento(DepartamentoEntity dpto) {
       this.listaDepartamentos.add(dpto);
    }
