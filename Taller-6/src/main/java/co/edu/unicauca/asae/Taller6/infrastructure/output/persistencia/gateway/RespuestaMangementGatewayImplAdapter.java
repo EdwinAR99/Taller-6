@@ -27,7 +27,7 @@ public class RespuestaMangementGatewayImplAdapter implements RespuestaManagement
     private final ModelMapper respuestaMapper;
 
     private final IDocenteRepository docenteRepository;
-    // private final ICuestionarioRepository cuestionarioRepository;
+    private final ICuestionarioRepository cuestionarioRepository;
     private final IPreguntaRepository preguntaRepository;
 
     public RespuestaMangementGatewayImplAdapter(
@@ -38,7 +38,7 @@ public class RespuestaMangementGatewayImplAdapter implements RespuestaManagement
         this.respuestaMapper = respuestaMapper;
         this.respuestaRepository = respuestaRepository;
         this.docenteRepository = docenteRepository;
-        // this.cuestionarioRepository = cuestionarioRepository;
+        this.cuestionarioRepository = cuestionarioRepository;
         this.preguntaRepository = preguntaRepository;
     }
 
@@ -86,6 +86,21 @@ public class RespuestaMangementGatewayImplAdapter implements RespuestaManagement
         }.getType());
 
         return listaObtenida;
+    }
+
+    @Override
+    public boolean returnResponseErrorIdDocenteNoExiste(int id) {
+        return !this.docenteRepository.existsById(id);
+    }
+
+    @Override
+    public boolean returnResponseErrorIdCuestionarioNoExiste(int id) {
+       return !this.cuestionarioRepository.existsById(id);
+    }
+
+    @Override
+    public boolean returnResponseErrorIdPreguntaNoExiste(int id) {
+        return !this.preguntaRepository.existsById(id);
     }
 
 }

@@ -6,13 +6,5 @@ public interface RespuestaFormatterResponseIntPort {
     // contestado el cuestionario.
     void returnResponseErrorCuestionarioContestado(String mensaje);
 
-    // Validar que antes de registrar una respuesta exista el id del cuestionario en
-    // la base de datos.
-    void returnResponseErrorIdCuestionarioNoExiste(String mensaje);
-
-    // Validar que antes de registrar una respuesta exista el id del docente en la
-    // base de datos.
-    void returnResponseErrorIdDocenteNoExiste(String mensaje);
-
     void retornarRespuestaErrorReglaDeNegocio(String mensaje);
 }
